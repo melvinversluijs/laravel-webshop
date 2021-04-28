@@ -20,6 +20,7 @@ services:
 
       APP_ENV: local
       APP_URL: http://localhost
+      APP_DEBUG: 1
       TIMEZONE: Europe/Amsterdam
       MAIL_DRIVER: log
   nginx:
