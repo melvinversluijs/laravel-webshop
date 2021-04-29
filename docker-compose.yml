@@ -15,7 +15,7 @@ services:
       DB_HOST: db
       DB_PORT: 5432
       DB_DATABASE: laravel
-      DB_USER: laravel
+      DB_USERNAME: laravel
       DB_PASSWORD: laravel
 
       APP_ENV: local
