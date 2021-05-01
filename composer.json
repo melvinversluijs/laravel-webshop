@@ -1,5 +1,5 @@
 {
-    "name": "melvinversluijs/webshop-laravel",
+    "name": "melvinversluijs/laravel-webshop",
     "type": "project",
     "description": "A webshop built using the Laravel framework.",
     "keywords": ["framework", "laravel", "webshop"],
