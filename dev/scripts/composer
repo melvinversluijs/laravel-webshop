@@ -1,0 +1,48 @@
+#!/bin/bash
+set -e
+set -o pipefail
+
+## Set defaults.
+COPY=0
+SCRIPT_DIR="$(cd $(dirname ${BASH_SOURCE[0]}) &>/dev/null && pwd -P)"
+PROJECT_ROOT="${SCRIPT_DIR}/../../"
+PHP_CONTAINER_NAME="webshop-laravel-php"
+
+## Run from project root.
+cd "${PROJECT_ROOT}"
+
+## Make sure the php container is running.
+if [[ -z "$(docker ps | grep ${PHP_CONTAINER_NAME})" ]]; then
+    echo "${PHP_CONTAINER_NAME} is not running."
+    exit 1
+fi
+
+## If no arguments are provided, show a usage message.
+if [[ "$#" -eq 0 ]]; then
+    cat <<EOF
+Usage: $(basename "${BASH_SOURCE[0]}") [--copy] argument
+
+Run a composer command in the php container.
+
+Available options:
+
+--copy   Copy the vendor folder to the host system after running the composer command.
+EOF
+    exit 1
+fi
+
+## Read the copy option.
+while [ -n "$1" ]; do
+	case "$1" in
+        --copy) COPY=1;;
+	esac
+	shift
+done
+
+## Run a composer command in the PHP container.
+docker compose exec php composer "$@"
+
+## If copy option was given, copy the vendor folder from the php container to the host.
+if [[ $COPY == 1 ]]; then
+    docker cp webshop-laravel-php:/app/vendor "${PROJECT_DIR}"
+fi
