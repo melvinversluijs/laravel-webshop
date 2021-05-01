@@ -18,11 +18,15 @@ services:
       DB_USERNAME: laravel
       DB_PASSWORD: laravel
 
+      REDIS_HOST: redis
+
+      SESSION_DRIVER: redis
+      CACHE_DRIVER: redis
+
       APP_ENV: local
       APP_URL: http://localhost
       APP_DEBUG: 1
       TIMEZONE: Europe/Amsterdam
-      MAIL_DRIVER: log
   nginx:
     image: nginx:1.19-alpine
     container_name: webshop-laravel-nginx
@@ -45,6 +49,9 @@ services:
       POSTGRES_PASSWORD: laravel
       POSTGRES_USER: laravel
       POSTGRES_DB: laravel
+  redis:
+    image: redis:6.2.2-alpine
+    container_name: webshop-laravel-redis
 
 volumes:
   webshop-laravel-db-data:
