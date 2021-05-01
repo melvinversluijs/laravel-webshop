@@ -16,15 +16,5 @@ if [[ -z "$(docker ps | grep ${PHP_CONTAINER_NAME})" ]]; then
     exit 1
 fi
 
-## If no arguments are provided, show a usage message.
-if [[ "$#" -eq 0 ]]; then
-    cat <<EOF
-Usage: $(basename "${BASH_SOURCE[0]}") argument
-
-Run a composer command in the php container.
-EOF
-    exit 1
-fi
-
-## Run a composer command in the PHP container.
-docker compose exec php composer "$@"
+## Run the Docker cp command.
+docker cp "${PHP_CONTAINER_NAME}":/app/vendor .
