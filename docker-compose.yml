@@ -8,6 +8,7 @@ services:
     container_name: webshop-laravel-php
     volumes:
       - .:/app:delegated
+      - vendor-files:/app/vendor
     depends_on:
       - db
     environment:
@@ -32,6 +33,7 @@ services:
     container_name: webshop-laravel-nginx
     volumes:
       - .:/app:delegated
+      - vendor-files:/app/vendor
       - ./.docker/nginx/site.conf:/etc/nginx/conf.d/default.conf
     ports:
       - "80:80"
@@ -42,7 +44,7 @@ services:
     image: postgres:13.2
     container_name: webshop-laravel-db
     volumes:
-      - webshop-laravel-db-data:/var/lib/postgresql/data:cached
+      - pgsql-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     environment:
@@ -54,4 +56,5 @@ services:
     container_name: webshop-laravel-redis
 
 volumes:
-  webshop-laravel-db-data:
+  pgsql-data:
+  vendor-files:
