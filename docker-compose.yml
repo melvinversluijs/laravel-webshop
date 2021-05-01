@@ -11,6 +11,7 @@ services:
       - vendor-files:/app/vendor
     depends_on:
       - db
+      - redis
     environment:
       DB_CONNECTION: pgsql
       DB_HOST: db
