@@ -28,6 +28,9 @@ services:
       APP_URL: http://localhost
       APP_DEBUG: 1
       TIMEZONE: Europe/Amsterdam
+
+      DEBUGBAR_ENABLED: 1
+      DEBUGBAR_THEME: dark
   nginx:
     image: nginx:1.19-alpine
     container_name: webshop-laravel-nginx
