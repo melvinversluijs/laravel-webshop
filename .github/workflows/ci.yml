@@ -10,6 +10,10 @@ jobs:
         run: '[ ! -e ".env" ] && cp .env.example .env'
       - name: Install Composer Dependencies
         run: composer install -q --no-interaction --no-scripts --no-progress --prefer-dist
+      - name: Install NPM Dependencies
+        run: npm install --silent
+      - name: Build FE
+        run: npm run production
       - name: Generate key
         run: php artisan key:generate
       - name: Execute unit tests
