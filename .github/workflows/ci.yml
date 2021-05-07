@@ -7,7 +7,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Copy .env
-        run: [[ ! -e ".env" ]] && cp .env.example .env
+        run: '[ ! -e ".env" ] && cp .env.example .env'
       - name: Install Composer Dependencies
         run: composer install -q --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Generate key
