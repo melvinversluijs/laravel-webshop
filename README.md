@@ -1,6 +1,6 @@
 # Laravel Webshop
 
-![CI](https://github.com/github/docs/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/github/docs/actions/workflows/CI/badge.svg)
 
 A webshop built with Laravel. Primarily built to learn some more about Laravel and to try out PHP 8.
 
