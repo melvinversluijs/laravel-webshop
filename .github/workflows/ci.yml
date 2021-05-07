@@ -3,6 +3,8 @@ on: push
 jobs:
   Test:
     runs-on: ubuntu-20.04
+    container:
+      image: php:8.0-alpine
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
