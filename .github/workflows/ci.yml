@@ -1,0 +1,16 @@
+name: CI
+on: push
+jobs:
+  Test:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Copy .env
+        run: [[ ! -e ".env" ]] && cp .env.example .env
+      - name: Install Composer Dependencies
+        run: composer install -q --no-interaction --no-scripts --no-progress --prefer-dist
+      - name: Generate key
+        run: php artisan key:generate
+      - name: Execute unit tests
+        run: php artisan test
