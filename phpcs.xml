@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="webshop-laravel">
+    <!-- Include root folder of project. -->
+    <file>app</file>
+    <file>config</file>
+    <file>database</file>
+    <file>tests</file>
+
+    <!-- Include all rules in ISAAC ruleset. -->
+    <rule ref="ISAAC"/>
+</ruleset>

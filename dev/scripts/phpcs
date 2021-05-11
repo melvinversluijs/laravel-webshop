@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+set -o pipefail
+
+## Set defaults.
+SCRIPT_DIR="$(cd $(dirname ${BASH_SOURCE[0]}) &>/dev/null && pwd -P)"
+PROJECT_ROOT="${SCRIPT_DIR}/../../"
+PHP_CONTAINER_NAME="webshop-laravel-php"
+
+## Run from project root.
+cd "${PROJECT_ROOT}"
+
+## Make sure the php container is running.
+if [[ -z "$(docker ps | grep ${PHP_CONTAINER_NAME})" ]]; then
+    echo "${PHP_CONTAINER_NAME} is not running."
+    exit 1
+fi
+
+## Run a composer command in the PHP container.
+docker compose exec php vendor/bin/phpcs "$@"
