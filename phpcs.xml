@@ -7,5 +7,12 @@
     <file>tests</file>
 
     <!-- Include all rules in ISAAC ruleset. -->
-    <rule ref="ISAAC"/>
+    <rule ref="ISAAC">
+        <!-- Laravel uses snake_case for Model properties. -->
+        <exclude name="Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps"/>
+    </rule>
+
+    <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+        <exclude-pattern>database/migrations</exclude-pattern>
+    </rule>
 </ruleset>

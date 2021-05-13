@@ -1,18 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\View\Components;
 
+use Illuminate\Support\Facades\View as ViewFacade;
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class AppLayout extends Component
 {
-    /**
-     * Get the view / contents that represents the component.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function render()
+    public function render(): View
     {
-        return view('layouts.app');
+        return ViewFacade::make('layouts.app');
     }
 }

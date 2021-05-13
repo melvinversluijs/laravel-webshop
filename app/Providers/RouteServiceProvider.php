@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
 use Illuminate\Cache\RateLimiting\Limit;
@@ -8,6 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 
+use function base_path;
+use function optional;
+
 class RouteServiceProvider extends ServiceProvider
 {
     /**
@@ -15,7 +20,6 @@ class RouteServiceProvider extends ServiceProvider
      *
      * This is used by Laravel authentication to redirect users after login.
      *
-     * @var string
      */
     public const HOME = '/dashboard';
 
@@ -56,7 +60,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function configureRateLimiting()
     {
-        RateLimiter::for('api', function (Request $request) {
+        RateLimiter::for('api', static function (Request $request) {
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
     }

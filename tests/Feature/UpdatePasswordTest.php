@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature;
 
 use App\Models\User;
@@ -13,10 +15,9 @@ class UpdatePasswordTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_password_can_be_updated()
+    public function testPasswordCanBeUpdated(): void
     {
         $this->actingAs($user = User::factory()->create());
-
         Livewire::test(UpdatePasswordForm::class)
                 ->set('state', [
                     'current_password' => 'password',
@@ -25,13 +26,12 @@ class UpdatePasswordTest extends TestCase
                 ])
                 ->call('updatePassword');
 
-        $this->assertTrue(Hash::check('new-password', $user->fresh()->password));
+        self::assertTrue(Hash::check('new-password', $user->fresh()->password));
     }
 
-    public function test_current_password_must_be_correct()
+    public function testCurrentPasswordMustBeCorrect(): void
     {
         $this->actingAs($user = User::factory()->create());
-
         Livewire::test(UpdatePasswordForm::class)
                 ->set('state', [
                     'current_password' => 'wrong-password',
@@ -41,13 +41,12 @@ class UpdatePasswordTest extends TestCase
                 ->call('updatePassword')
                 ->assertHasErrors(['current_password']);
 
-        $this->assertTrue(Hash::check('password', $user->fresh()->password));
+        self::assertTrue(Hash::check('password', $user->fresh()->password));
     }
 
-    public function test_new_passwords_must_match()
+    public function testNewPasswordsMustMatch(): void
     {
         $this->actingAs($user = User::factory()->create());
-
         Livewire::test(UpdatePasswordForm::class)
                 ->set('state', [
                     'current_password' => 'password',
@@ -57,6 +56,6 @@ class UpdatePasswordTest extends TestCase
                 ->call('updatePassword')
                 ->assertHasErrors(['password']);
 
-        $this->assertTrue(Hash::check('password', $user->fresh()->password));
+        self::assertTrue(Hash::check('password', $user->fresh()->password));
     }
 }

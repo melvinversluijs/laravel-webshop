@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature;
 
 use App\Providers\RouteServiceProvider;
@@ -11,14 +13,13 @@ class RegistrationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_registration_screen_can_be_rendered()
+    public function testRegistrationScreenCanBeRendered(): void
     {
         $response = $this->get('/register');
-
         $response->assertStatus(200);
     }
 
-    public function test_new_users_can_register()
+    public function testNewUsersCanRegister(): void
     {
         $response = $this->post('/register', [
             'name' => 'Test User',

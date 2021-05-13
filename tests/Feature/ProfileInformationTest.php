@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature;
 
 use App\Models\User;
@@ -12,17 +14,16 @@ class ProfileInformationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_current_profile_information_is_available()
+    public function testCurrentProfileInformationIsAvailable(): void
     {
         $this->actingAs($user = User::factory()->create());
-
         $component = Livewire::test(UpdateProfileInformationForm::class);
 
-        $this->assertEquals($user->name, $component->state['name']);
-        $this->assertEquals($user->email, $component->state['email']);
+        self::assertEquals($user->name, $component->state['name']);
+        self::assertEquals($user->email, $component->state['email']);
     }
 
-    public function test_profile_information_can_be_updated()
+    public function testProfileInformationCanBeUpdated(): void
     {
         $this->actingAs($user = User::factory()->create());
 
@@ -30,7 +31,7 @@ class ProfileInformationTest extends TestCase
                 ->set('state', ['name' => 'Test Name', 'email' => 'test@example.com'])
                 ->call('updateProfileInformation');
 
-        $this->assertEquals('Test Name', $user->fresh()->name);
-        $this->assertEquals('test@example.com', $user->fresh()->email);
+        self::assertEquals('Test Name', $user->fresh()->name);
+        self::assertEquals('test@example.com', $user->fresh()->email);
     }
 }

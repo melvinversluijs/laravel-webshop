@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+
+use function now;
 
 class UserFactory extends Factory
 {
@@ -12,6 +16,7 @@ class UserFactory extends Factory
      * The name of the factory's corresponding model.
      *
      * @var string
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     protected $model = User::class;
 
@@ -34,11 +39,11 @@ class UserFactory extends Factory
     /**
      * Indicate that the model's email address should be unverified.
      *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     * @return Factory
      */
     public function unverified()
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(static function (array $attributes) {
             return [
                 'email_verified_at' => null,
             ];
