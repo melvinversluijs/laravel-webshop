@@ -22,6 +22,9 @@ RUN docker-php-ext-install \
         pdo_pgsql \
         redis
 
+## Set development php ini file.
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+
 ## Set working directory.
 WORKDIR /app
 
