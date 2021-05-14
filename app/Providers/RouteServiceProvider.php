@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 
 use function base_path;
-use function optional;
 
 class RouteServiceProvider extends ServiceProvider
 {
