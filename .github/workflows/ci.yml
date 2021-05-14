@@ -1,7 +1,7 @@
 name: CI
 on: push
 jobs:
-  Test:
+  Setup:
     runs-on: ubuntu-20.04
     steps:
       - name: Setup php 8.0
@@ -22,7 +22,16 @@ jobs:
         run: npm run production
       - name: Generate key
         run: php artisan key:generate
+  PHPCS:
+    needs: Setup
+    runs-on: ubuntu-20.04
+    steps:
       - name: PHPCS
         run: php vendor/bin/phpcs
+
+  PHPUnit:
+    needs: Setup
+    runs-on: ubuntu-20.04
+    steps:
       - name: PHPUnit
         run: php artisan test
