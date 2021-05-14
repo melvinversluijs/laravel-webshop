@@ -15,10 +15,7 @@ class PasswordConfirmationTest extends TestCase
 
     public function testConfirmPasswordScreenCanBeRendered(): void
     {
-        $user = Features::hasTeamFeatures()
-                        ? User::factory()->withPersonalTeam()->create()
-                        : User::factory()->create();
-
+        $user = User::factory()->create();
         $response = $this->actingAs($user)->get('/user/confirm-password');
 
         $response->assertStatus(200);

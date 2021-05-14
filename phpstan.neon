@@ -6,3 +6,24 @@ parameters:
         - routes
         - tests
     level: max
+    ignoreErrors:
+        -
+            # $this is available in route files.
+            message: '#Undefined variable: \$this#'
+            path: routes/*
+        -
+            # Parent method declaration should be overriden in child to define iterable type.
+            message: '#Parameter \#2 \$input \(array<string, mixed>\) of method App\\Actions\\Fortify\\UpdateUserProfileInformation::update\(\) should be contravariant with parameter \$input \(array\) of method Laravel\\Fortify\\Contracts\\UpdatesUserProfileInformation::update\(\)#'
+            path: app/Actions/Fortify/UpdateUserProfileInformation.php
+        -
+            # Parent method declaration should be overriden in child to define iterable type.
+            message: '#Parameter \#2 \$input \(array<string, mixed>\) of method App\\Actions\\Fortify\\UpdateUserPassword::update\(\) should be contravariant with parameter \$input \(array\) of method Laravel\\Fortify\\Contracts\\UpdatesUserPasswords::update\(\)#'
+            path: app/Actions/Fortify/UpdateUserPassword.php
+        -
+            # Parent method declaration should be overriden in child to define iterable type.
+            message: '#Parameter \#2 \$input \(array<string, mixed>\) of method App\\Actions\\Fortify\\ResetUserPassword::reset\(\) should be contravariant with parameter \$input \(array\) of method Laravel\\Fortify\\Contracts\\ResetsUserPasswords::reset\(\)#'
+            path: app/Actions/Fortify/ResetUserPassword.php
+        -
+            # Parent method declaration should be overriden in child to define iterable type.
+            message: '#Parameter \#1 \$input \(array<string, mixed>\) of method App\\Actions\\Fortify\\CreateNewUser::create\(\) should be contravariant with parameter \$input \(array\) of method Laravel\\Fortify\\Contracts\\CreatesNewUsers::create\(\)#'
+            path: app/Actions/Fortify/CreateNewUser.php

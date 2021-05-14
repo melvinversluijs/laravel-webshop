@@ -24,8 +24,7 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
-        $guards = $guards === null || count($guards) === 0 ? [null] : $guards;
-
+        $guards = count($guards) === 0 ? [null] : $guards;
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 return redirect(RouteServiceProvider::HOME);

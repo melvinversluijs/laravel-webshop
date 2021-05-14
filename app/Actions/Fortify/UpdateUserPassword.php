@@ -20,7 +20,7 @@ class UpdateUserPassword implements UpdatesUserPasswords
      * Validate and update the user's password.
      *
      * @param mixed $user
-     * @param array $input
+     * @param array<string, mixed> $input
      * @return void
      * @throws ValidationException
      */
