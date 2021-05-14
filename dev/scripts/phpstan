@@ -16,5 +16,5 @@ if [[ -z "$(docker ps | grep ${PHP_CONTAINER_NAME})" ]]; then
     exit 1
 fi
 
-## Run PHPCS in the PHP container.
-docker compose exec php vendor/bin/phpcs "$@"
+## Run PHPStan analyse in the php container.
+docker compose exec php vendor/bin/phpstan analyse --memory-limit=2G "$@"
