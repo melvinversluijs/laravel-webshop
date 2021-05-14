@@ -23,6 +23,6 @@ jobs:
       - name: Generate key
         run: php artisan key:generate
       - name: PHPCS
-        run: composer run test:phpcs
+        run: php vendor/bin/phpcs
       - name: PHPUnit
         run: php artisan test
