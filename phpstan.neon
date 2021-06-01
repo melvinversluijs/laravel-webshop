@@ -27,3 +27,7 @@ parameters:
             # Parent method declaration should be overriden in child to define iterable type.
             message: '#Parameter \#1 \$input \(array<string, mixed>\) of method App\\Actions\\Fortify\\CreateNewUser::create\(\) should be contravariant with parameter \$input \(array\) of method Laravel\\Fortify\\Contracts\\CreatesNewUsers::create\(\)#'
             path: app/Actions/Fortify/CreateNewUser.php
+
+includes:
+    - ./vendor/phpstan/phpstan-strict-rules/rules.neon
+    - ./vendor/nunomaduro/larastan/extension.neon
