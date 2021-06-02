@@ -23,4 +23,7 @@ The make interacting with the php container a bit easier, some utility scripts h
 - `./dev/scripts/composer ...` Run a composer command in the php container.
 - `./dev/scripts/artisan ...` Run an artisan command in the php container.
 - `./dev/scripts/download-vendor` Download the vendor files from the php container to the host system. (Useful for 
-  autocompletion in IDE's)
+  autocompletion in IDE's).
+- `./dev/scripts/phpcs` Run phpcs tests.
+- `./dev/scripts/phpstan` Run phpstan tests.
+- `./dev/scripts/phpunit` Run phpunit tests.
