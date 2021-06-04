@@ -15,10 +15,6 @@ use Illuminate\Support\Facades\View as ViewFacade;
 |
 */
 
-Route::get('/', function (): View {
-    return ViewFacade::make('welcome');
-});
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function (): View {
+Route::middleware(['auth:sanctum', 'verified'])->get('/', static function (): View {
     return ViewFacade::make('dashboard');
 })->name('dashboard');
