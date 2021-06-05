@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Contracts\View\View;
+use App\Http\Livewire\ProductsGrid;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\View as ViewFacade;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +14,7 @@ use Illuminate\Support\Facades\View as ViewFacade;
 |
 */
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/', static function (): View {
-    return ViewFacade::make('dashboard');
-})->name('dashboard');
+Route::middleware(['middleware' => 'auth:sanctum', 'verified'])->group(static function (): void {
+    Route::view('/', 'dashboard')->name('dashboard');
+    Route::get('/products', ProductsGrid::class)->name('products');
+});

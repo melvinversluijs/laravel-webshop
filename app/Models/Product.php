@@ -6,11 +6,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use function number_format;
+use function sprintf;
+
 class Product extends Model
 {
     /**
-     * The attributes that are mass assignable.
-     *
      * @var string[]
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
@@ -20,4 +21,19 @@ class Product extends Model
         'name',
         'price',
     ];
+
+    public function getFormattedPriceAttribute(): string
+    {
+        return sprintf('$ %s', number_format($this->price / 100, 2));
+    }
+
+    public function getFormattedCreatedAtAttribute(): ?string
+    {
+        return $this->created_at?->format('d-m-Y H:i:s');
+    }
+
+    public function getFormattedUpdatedAtAttribute(): ?string
+    {
+        return $this->updated_at?->format('d-m-Y H:i:s');
+    }
 }
