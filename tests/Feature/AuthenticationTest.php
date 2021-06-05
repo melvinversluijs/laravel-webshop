@@ -7,6 +7,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
@@ -40,5 +41,18 @@ class AuthenticationTest extends TestCase
         ]);
 
         $this->assertGuest();
+    }
+
+    public function testGuestsCanNotAccessDashboard(): void
+    {
+        $response = $this->get('/');
+        $response->assertStatus(Response::HTTP_FOUND);
+    }
+
+    public function testAuthenticatedUsersCanAccessDashboard(): void
+    {
+        $user = User::factory()->create();
+        $response = $this->actingAs($user)->get('/');
+        $response->assertStatus(Response::HTTP_OK);
     }
 }
