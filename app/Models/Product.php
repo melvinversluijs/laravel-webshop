@@ -4,11 +4,39 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 use function number_format;
 use function sprintf;
 
+/**
+ * App\Models\Product
+ *
+ * @property int $id
+ * @property string $sku
+ * @property string $slug
+ * @property string $name
+ * @property int $price
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read string|null $formatted_created_at
+ * @property-read string $formatted_price
+ * @property-read string|null $formatted_updated_at
+ * @method static Builder|Product newModelQuery()
+ * @method static Builder|Product newQuery()
+ * @method static Builder|Product query()
+ * @method static Builder|Product whereCreatedAt($value)
+ * @method static Builder|Product whereId($value)
+ * @method static Builder|Product whereName($value)
+ * @method static Builder|Product wherePrice($value)
+ * @method static Builder|Product whereSku($value)
+ * @method static Builder|Product whereSlug($value)
+ * @method static Builder|Product whereUpdatedAt($value)
+ * @mixin Eloquent
+ */
 class Product extends Model
 {
     /**
