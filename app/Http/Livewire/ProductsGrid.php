@@ -17,4 +17,9 @@ class ProductsGrid extends Component
             'products' => Product::all(),
         ]);
     }
+
+    public function deleteProduct(string $sku): void
+    {
+        Product::whereSku($sku)->firstOrFail()->delete();
+    }
 }
