@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\ProductForm;
 use App\Http\Livewire\ProductsGrid;
 use Illuminate\Support\Facades\Route;
 
@@ -16,5 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['middleware' => 'auth:sanctum', 'verified'])->group(static function (): void {
     Route::view('/', 'dashboard')->name('dashboard');
-    Route::get('/products', ProductsGrid::class)->name('products');
+
+    Route::group(['prefix' => 'products'], static function (): void {
+        Route::get('/', ProductsGrid::class)->name('products');
+        Route::get('/create', ProductForm::class)->name('products.create');
+        Route::get('/edit/{product}', ProductForm::class)->name('products.edit');
+    });
 });
