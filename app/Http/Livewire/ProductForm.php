@@ -20,9 +20,9 @@ class ProductForm extends Component
      * @var array<string, string>
      */
     protected array $rules = [
-        'product.name' => 'required|max:255',
-        'product.sku' => 'required|alpha_dash|max:255',
-        'product.slug' => 'required|alpha_dash|max:255',
+        'product.name' => 'required|min:3|max:255',
+        'product.sku' => 'required|alpha_dash|min:3|max:255',
+        'product.slug' => 'required|alpha_dash|min:3|max:255',
         'product.price' => 'required|numeric|min:0',
     ];
 
@@ -35,7 +35,7 @@ class ProductForm extends Component
         $this->validateOnly($property);
     }
 
-    public function saveLink(): Redirector
+    public function saveProduct(): Redirector
     {
         $this->validate();
         $this->product->save();
