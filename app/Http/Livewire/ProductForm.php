@@ -44,9 +44,9 @@ class ProductForm extends Component
         return Redirect::route('products');
     }
 
-    public function mount(?Product $product = null): void
+    public function mount(mixed $product = null): void
     {
-        if ($product === null) {
+        if (!$product instanceof Product) {
             $product = new Product();
         }
 
