@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+set -o pipefail
+
+## Set defaults.
+SCRIPT_DIR="$(cd $(dirname ${BASH_SOURCE[0]}) &>/dev/null && pwd -P)"
+
+${SCRIPT_DIR}/phpcs && ${SCRIPT_DIR}/phpstan && ${SCRIPT_DIR}/phpunit

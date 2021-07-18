@@ -4,6 +4,7 @@
     <file>app</file>
     <file>config</file>
     <file>database</file>
+    <file>routes</file>
     <file>tests</file>
 
     <!-- Configure code standards. -->
@@ -15,7 +16,13 @@
         <exclude name="Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps"/>
     </rule>
 
+    <!-- Laravel migrations do not have a namespace. -->
     <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
         <exclude-pattern>database/migrations</exclude-pattern>
+    </rule>
+
+    <!-- You can use '$this' in route files. -->
+    <rule ref="PHPCompatibility.FunctionDeclarations.NewClosure.ThisFoundOutsideClass">
+        <exclude-pattern>routes</exclude-pattern>
     </rule>
 </ruleset>

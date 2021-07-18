@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Livewire\ProductForm;
-use App\Http\Livewire\ProductsGrid;
+declare(strict_types=1);
+
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +20,8 @@ Route::middleware(['middleware' => 'auth:sanctum', 'verified'])->group(static fu
     Route::view('/', 'dashboard')->name('dashboard');
 
     Route::group(['prefix' => 'products'], static function (): void {
-        Route::get('/', ProductsGrid::class)->name('products');
-        Route::get('/create', ProductForm::class)->name('products.create');
-        Route::get('/edit/{product}', ProductForm::class)->name('products.edit');
+        Route::get('/', [ProductController::class, 'index'])->name('products');
+        Route::get('/create', [ProductController::class, 'create'])->name('products.create');
+        Route::get('/{product}/edit/', [ProductController::class, 'edit'])->name('products.edit');
     });
 });
