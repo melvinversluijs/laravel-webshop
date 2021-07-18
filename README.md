@@ -1,3 +1,4 @@
+
 # Laravel Webshop
 
 ![CI](https://github.com/melvinversluijs/webshop-laravel/actions/workflows/ci.yml/badge.svg)
@@ -27,3 +28,4 @@ The make interacting with the php container a bit easier, some utility scripts h
 - `./dev/scripts/phpcs` Run phpcs tests.
 - `./dev/scripts/phpstan` Run phpstan tests.
 - `./dev/scripts/phpunit` Run phpunit tests.
+- `./dev/scripts/test` Run phpcs, phpstan and phpunit in order.
