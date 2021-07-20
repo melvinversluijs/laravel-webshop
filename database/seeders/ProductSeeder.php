@@ -5,19 +5,11 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use App\Models\Product;
-use Faker\Generator;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
 class ProductSeeder extends Seeder
 {
-    private Generator $faker;
-
-    public function __construct(Generator $faker)
-    {
-        $this->faker = $faker;
-    }
-
     public function run(): void
     {
         $products = [
@@ -38,11 +30,9 @@ class ProductSeeder extends Seeder
 
     private function create(string $name): void
     {
-        Product::create([
+        Product::factory()->create([
             'name' => $name,
-            'slug' => Str::slug($name),
             'sku' => Str::snake($name),
-            'price' => $this->faker->numberBetween(1, 50000),
         ]);
     }
 }

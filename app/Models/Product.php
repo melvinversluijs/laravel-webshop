@@ -6,7 +6,10 @@ namespace App\Models;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Support\Carbon;
 
 use function number_format;
@@ -17,7 +20,6 @@ use function sprintf;
  *
  * @property int $id
  * @property string $sku
- * @property string $slug
  * @property string $name
  * @property int $price
  * @property Carbon|null $created_at
@@ -33,19 +35,19 @@ use function sprintf;
  * @method static Builder|Product whereName($value)
  * @method static Builder|Product wherePrice($value)
  * @method static Builder|Product whereSku($value)
- * @method static Builder|Product whereSlug($value)
  * @method static Builder|Product whereUpdatedAt($value)
  * @mixin Eloquent
  */
 class Product extends Model
 {
+    use HasFactory;
+
     /**
      * @var string[]
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     protected $fillable = [
         'sku',
-        'slug',
         'name',
         'price',
     ];
@@ -63,5 +65,15 @@ class Product extends Model
     public function getFormattedUpdatedAtAttribute(): ?string
     {
         return $this->updated_at?->format('d-m-Y H:i:s');
+    }
+
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
+    public function slug(): MorphOne
+    {
+        return $this->morphOne(Category::class, 'slugable');
     }
 }
