@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Products;
 
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 use Livewire\Component;
 
-class ProductsGrid extends Component
+class Grid extends Component
 {
     public function render(): View
     {
-        return ViewFacade::make('livewire.products-grid', [
+        return ViewFacade::make('livewire.products.grid', [
             'products' => Product::all(),
         ]);
     }

@@ -52,6 +52,10 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @method static Builder|User whereTwoFactorSecret($value)
  * @method static Builder|User whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property string|null $profile_photo_path
+ * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
+ * @property-read Collection|PersonalAccessToken[] $tokens
+ * @method static Builder|User whereProfilePhotoPath($value)
  */
 class User extends Authenticatable
 {

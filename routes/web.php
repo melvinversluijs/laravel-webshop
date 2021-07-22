@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +24,11 @@ Route::middleware(['middleware' => 'auth:sanctum', 'verified'])->group(static fu
         Route::get('/', [ProductController::class, 'index'])->name('products');
         Route::get('/create', [ProductController::class, 'create'])->name('products.create');
         Route::get('/{product}/edit/', [ProductController::class, 'edit'])->name('products.edit');
+    });
+
+    Route::group(['prefix' => 'categories'], static function (): void {
+        Route::get('/', [CategoryController::class, 'index'])->name('categories');
+        Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
+        Route::get('/{category}/edit/', [CategoryController::class, 'edit'])->name('categories.edit');
     });
 });

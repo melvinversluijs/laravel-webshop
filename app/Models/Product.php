@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Database\Factories\ProductFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -27,6 +29,10 @@ use function sprintf;
  * @property-read string|null $formatted_created_at
  * @property-read string $formatted_price
  * @property-read string|null $formatted_updated_at
+ * @property-read Collection|Category[] $categories
+ * @property-read int|null $categories_count
+ * @property-read Slug|null $slug
+ * @method static ProductFactory factory(...$parameters)
  * @method static Builder|Product newModelQuery()
  * @method static Builder|Product newQuery()
  * @method static Builder|Product query()
@@ -74,6 +80,6 @@ class Product extends Model
 
     public function slug(): MorphOne
     {
-        return $this->morphOne(Category::class, 'slugable');
+        return $this->morphOne(Slug::class, 'slugable');
     }
 }
