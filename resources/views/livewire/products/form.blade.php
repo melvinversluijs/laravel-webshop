@@ -28,11 +28,11 @@
                             <x-jet-input-error for="product.sku" class="mt-2" />
                         </div>
 
-                        <!-- Product Slug. -->
+                        <!-- Slug. -->
                         <div class="col-span-6 sm:col-span-4">
                             <x-jet-label for="slug" value="{{ __('Slug') }}" />
-                            <x-jet-input id="slug" type="text" class="mt-1 block w-full" wire:model.lazy="product.slug"/>
-                            <x-jet-input-error for="product.slug" class="mt-2" />
+                            <x-jet-input id="slug" type="text" class="mt-1 block w-full" wire:model.lazy="slug.slug" />
+                            <x-jet-input-error for="slug.slug" class="mt-2" />
                         </div>
 
                         <!-- Product Price. -->

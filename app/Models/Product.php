@@ -58,6 +58,14 @@ class Product extends Model
         'price',
     ];
 
+    /**
+     * @var string[]
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
+    protected $with = [
+        'slug'
+    ];
+
     public function getFormattedPriceAttribute(): string
     {
         return sprintf('$ %s', number_format($this->price / 100, 2));

@@ -5,23 +5,17 @@ declare(strict_types=1);
 namespace App\Http\Livewire\Products;
 
 use App\Models\Product;
+use App\Models\Slug;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
 class Form extends Component
 {
     public Product $product;
-
-    /**
-     * @var array<string, string>
-     */
-    protected array $rules = [
-        'product.name' => 'required|min:3|max:255',
-        'product.sku' => 'required|alpha_dash|min:3|max:255',
-        'product.price' => 'required|numeric|min:0',
-    ];
+    public Slug $slug;
 
     public function render(): View
     {
@@ -37,6 +31,7 @@ class Form extends Component
         }
 
         $this->product = $product;
+        $this->slug = $product->slug()->firstOrNew();
     }
 
     /**
@@ -51,8 +46,30 @@ class Form extends Component
     public function saveProduct(): void
     {
         $this->validate();
+
         $this->product->save();
+        $this->product->slug()->save($this->slug);
 
         $this->redirectRoute('products');
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    protected function rules(): array
+    {
+        $alphaDashValidation = ['required', 'alpha_dash', 'min:3', 'max:255'];
+        return [
+            'product.name' => 'required|min:3|max:255',
+            'product.sku' => [
+                ...$alphaDashValidation,
+                Rule::unique('products', 'sku')->ignoreModel($this->product),
+            ],
+            'slug.slug' => [
+                ...$alphaDashValidation,
+                Rule::unique('slugs', 'slug')->ignoreModel($this->slug),
+            ],
+            'product.price' => 'required|numeric|min:0',
+        ];
     }
 }

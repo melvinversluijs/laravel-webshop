@@ -26,7 +26,7 @@
                         <x-table.cell>{{ $product->sku }}</x-table.cell>
                         <x-table.cell>{{ $product->name }}</x-table.cell>
                         <x-table.cell>{{ $product->formatted_price }}</x-table.cell>
-                        <x-table.cell>{{ $product->slug }}</x-table.cell>
+                        <x-table.cell>{{ $product->slug?->slug }}</x-table.cell>
                         <x-table.cell>{{ $product->formatted_created_at }}</x-table.cell>
                         <x-table.cell>{{ $product->formatted_updated_at }}</x-table.cell>
                         <x-table.cell>
