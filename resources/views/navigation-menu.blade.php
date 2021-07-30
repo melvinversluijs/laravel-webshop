@@ -17,12 +17,12 @@
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('categories') }}" :active="request()->routeIs('categories')">
+                    <x-jet-nav-link href="{{ route('categories') }}" :active="str_starts_with(request()->route()->getName(), 'categories')">
                         {{ __('Categories') }}
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('products') }}" :active="request()->routeIs('products')">
+                    <x-jet-nav-link href="{{ route('products') }}" :active="str_starts_with(request()->route()->getName(), 'products')">
                         {{ __('Products') }}
                     </x-jet-nav-link>
                 </div>
