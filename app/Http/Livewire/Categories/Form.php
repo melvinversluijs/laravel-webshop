@@ -5,22 +5,17 @@ declare(strict_types=1);
 namespace App\Http\Livewire\Categories;
 
 use App\Models\Category;
+use App\Models\Slug;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
 class Form extends Component
 {
     public Category $category;
-
-    /**
-     * @var array<string, string>
-     */
-    protected array $rules = [
-        'category.code' => 'required|alpha_dash|min:3|max:255',
-        'category.name' => 'required|min:3|max:255',
-    ];
+    public Slug $slug;
 
     public function render(): View
     {
@@ -36,6 +31,7 @@ class Form extends Component
         }
 
         $this->category = $category;
+        $this->slug = $category->slug()->firstOrNew();
     }
 
     /**
@@ -51,7 +47,27 @@ class Form extends Component
     {
         $this->validate();
         $this->category->save();
+        $this->category->slug()->save($this->slug);
 
         $this->redirectRoute('categories');
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    protected function rules(): array
+    {
+        $alphaNumeric = ['required', 'alpha_dash', 'min:3', 'max:255'];
+        return [
+            'category.code' => [
+                ...$alphaNumeric,
+                Rule::unique('categories', 'code')->ignoreModel($this->category),
+            ],
+            'category.name' => 'required|min:3|max:255',
+            'slug.slug' => [
+                ...$alphaNumeric,
+                Rule::unique('slugs', 'slug')->ignoreModel($this->slug),
+            ],
+        ];
     }
 }

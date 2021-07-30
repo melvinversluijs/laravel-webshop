@@ -12,6 +12,7 @@
                 <x-table.heading>ID</x-table.heading>
                 <x-table.heading>Code</x-table.heading>
                 <x-table.heading>Name</x-table.heading>
+                <x-table.heading>Slug</x-table.heading>
                 <x-table.heading>Created at</x-table.heading>
                 <x-table.heading>Last updated at</x-table.heading>
                 <x-table.heading>Actions</x-table.heading>
@@ -23,6 +24,7 @@
                         <x-table.cell>{{ $category->id }}</x-table.cell>
                         <x-table.cell>{{ $category->code }}</x-table.cell>
                         <x-table.cell>{{ $category->name }}</x-table.cell>
+                        <x-table.cell>{{ $category->slug?->slug }}</x-table.cell>
                         <x-table.cell>{{ $category->formatted_created_at }}</x-table.cell>
                         <x-table.cell>{{ $category->formatted_updated_at }}</x-table.cell>
                         <x-table.cell>

@@ -17,6 +17,13 @@
                             <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.lazy="category.name" autofocus />
                             <x-jet-input-error for="category.name" class="mt-2" />
                         </div>
+
+                        <!-- Slug. -->
+                        <div class="col-span-6 sm:col-span-4">
+                            <x-jet-label for="slug" value="{{ __('Slug') }}" />
+                            <x-jet-input id="slug" type="text" class="mt-1 block w-full" wire:model.lazy="slug.slug" autofocus />
+                            <x-jet-input-error for="slug.slug" class="mt-2" />
+                        </div>
                     </div>
                     <div class="px-4 py-3 text-right sm:px-6">
                         <x-jet-button>{{ __('Save') }}</x-jet-button>
