@@ -27,5 +27,5 @@ The make interacting with the php container a bit easier, some utility scripts h
   autocompletion in IDE's).
 - `./dev/scripts/phpcs` Run phpcs tests.
 - `./dev/scripts/phpstan` Run phpstan tests.
-- `./dev/scripts/phpunit` Run phpunit tests.
+- `./dev/scripts/pest` Run phpunit/pest tests.
 - `./dev/scripts/test` Run phpcs, phpstan and phpunit in order.
