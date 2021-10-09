@@ -5,4 +5,4 @@ set -o pipefail
 ## Set defaults.
 SCRIPT_DIR="$(cd $(dirname ${BASH_SOURCE[0]}) &>/dev/null && pwd -P)"
 
-${SCRIPT_DIR}/artisan test
+${SCRIPT_DIR}/artisan test --parallel "$@"
