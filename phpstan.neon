@@ -6,6 +6,8 @@ parameters:
         - routes
         - tests
     level: max
+    excludePaths:
+        - tests/Pest.php
     ignoreErrors:
         -
             # $this is available in route files.
