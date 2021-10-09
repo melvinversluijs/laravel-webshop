@@ -17,7 +17,7 @@ class UpdatePasswordTest extends TestCase
 
     public function testPasswordCanBeUpdated(): void
     {
-        $this->actingAs($user = User::factory()->create());
+        $this->actingAs($user = User::factory()->createOne());
         Livewire::test(UpdatePasswordForm::class)
                 ->set('state', [
                     'current_password' => 'password',
@@ -26,12 +26,13 @@ class UpdatePasswordTest extends TestCase
                 ])
                 ->call('updatePassword');
 
-        self::assertTrue(Hash::check('new-password', $user->fresh()->password));
+        self::assertTrue(Hash::check('new-password', (string) $user->fresh()?->password));
     }
 
     public function testCurrentPasswordMustBeCorrect(): void
     {
-        $this->actingAs($user = User::factory()->create());
+        $user = User::factory()->createOne();
+        $this->actingAs($user);
         Livewire::test(UpdatePasswordForm::class)
                 ->set('state', [
                     'current_password' => 'wrong-password',
@@ -41,12 +42,13 @@ class UpdatePasswordTest extends TestCase
                 ->call('updatePassword')
                 ->assertHasErrors(['current_password']);
 
-        self::assertTrue(Hash::check('password', $user->fresh()->password));
+        self::assertTrue(Hash::check('password', (string) $user->fresh()?->password));
     }
 
     public function testNewPasswordsMustMatch(): void
     {
-        $this->actingAs($user = User::factory()->create());
+        $user = User::factory()->createOne();
+        $this->actingAs($user);
         Livewire::test(UpdatePasswordForm::class)
                 ->set('state', [
                     'current_password' => 'password',
@@ -56,6 +58,6 @@ class UpdatePasswordTest extends TestCase
                 ->call('updatePassword')
                 ->assertHasErrors(['password']);
 
-        self::assertTrue(Hash::check('password', $user->fresh()->password));
+        self::assertTrue(Hash::check('password', (string) $user->fresh()?->password));
     }
 }

@@ -21,7 +21,7 @@ class EmailVerificationTest extends TestCase
 
     public function testEmailVerificationScreenCanBeRendered(): void
     {
-        $user = User::factory()->create([
+        $user = User::factory()->createOne([
             'email_verified_at' => null,
         ]);
 
@@ -32,7 +32,7 @@ class EmailVerificationTest extends TestCase
     public function testEmailCanBeVerified(): void
     {
         Event::fake();
-        $user = User::factory()->create([
+        $user = User::factory()->createOne([
             'email_verified_at' => null,
         ]);
 
@@ -46,13 +46,13 @@ class EmailVerificationTest extends TestCase
 
         Event::assertDispatched(Verified::class);
 
-        self::assertTrue($user->fresh()->hasVerifiedEmail());
+        self::assertTrue($user->fresh()?->hasVerifiedEmail());
         $response->assertRedirect(RouteServiceProvider::HOME . '?verified=1');
     }
 
     public function testEmailCanNotVerifiedWithInvalidHash(): void
     {
-        $user = User::factory()->create([
+        $user = User::factory()->createOne([
             'email_verified_at' => null,
         ]);
 
@@ -63,6 +63,6 @@ class EmailVerificationTest extends TestCase
         );
 
         $this->actingAs($user)->get($verificationUrl);
-        self::assertFalse($user->fresh()->hasVerifiedEmail());
+        self::assertFalse($user->fresh()?->hasVerifiedEmail());
     }
 }

@@ -23,8 +23,7 @@ class PasswordResetTest extends TestCase
     public function testResetPasswordLinkCanBeRequested(): void
     {
         Notification::fake();
-        $user = User::factory()->create();
-
+        $user = User::factory()->createOne();
         $this->post('/forgot-password', ['email' => $user->email]);
 
         Notification::assertSentTo($user, ResetPassword::class);
@@ -33,8 +32,7 @@ class PasswordResetTest extends TestCase
     public function testResetPasswordScreenCanBeRendered(): void
     {
         Notification::fake();
-        $user = User::factory()->create();
-
+        $user = User::factory()->createOne();
         $this->post('/forgot-password', ['email' => $user->email]);
 
         Notification::assertSentTo($user, ResetPassword::class, function ($notification): bool {
@@ -47,8 +45,7 @@ class PasswordResetTest extends TestCase
     public function testPasswordCanBeResetWithValidToken(): void
     {
         Notification::fake();
-        $user = User::factory()->create();
-
+        $user = User::factory()->createOne();
         $this->post('/forgot-password', ['email' => $user->email]);
 
         Notification::assertSentTo($user, ResetPassword::class, function ($notification) use ($user): bool {

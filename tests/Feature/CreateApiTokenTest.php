@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Feature;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Jetstream\Http\Livewire\ApiTokenManager;
 use Livewire\Livewire;
@@ -14,9 +15,13 @@ class CreateApiTokenTest extends TestCase
 {
     use RefreshDatabase;
 
+    /**
+     * @throws Exception
+     */
     public function testApiTokensCanBeCreated(): void
     {
-        $this->actingAs($user = User::factory()->create());
+        $user = User::factory()->createOne();
+        $this->actingAs($user);
         Livewire::test(ApiTokenManager::class)
                     ->set(['createApiTokenForm' => [
                         'name' => 'Test Token',
@@ -28,9 +33,14 @@ class CreateApiTokenTest extends TestCase
                     ])
                     ->call('createApiToken');
 
-        self::assertCount(1, $user->fresh()->tokens);
-        self::assertEquals('Test Token', $user->fresh()->tokens->first()->name);
-        self::assertTrue($user->fresh()->tokens->first()->can('read'));
-        self::assertFalse($user->fresh()->tokens->first()->can('delete'));
+        $user = $user->fresh();
+        if ($user === null) {
+            throw new Exception('Could not properly refresh user.');
+        }
+
+        self::assertCount(1, $user->tokens);
+        self::assertEquals('Test Token', $user->tokens->first()?->name);
+        self::assertTrue($user->tokens->first()?->can('read'));
+        self::assertFalse($user->tokens->first()?->can('delete'));
     }
 }

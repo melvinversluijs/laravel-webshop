@@ -16,7 +16,8 @@ class DeleteAccountTest extends TestCase
 
     public function testUserAccountsCanBeDeleted(): void
     {
-        $this->actingAs($user = User::factory()->create());
+        $user = User::factory()->createOne();
+        $this->actingAs($user);
         Livewire::test(DeleteUserForm::class)
             ->set('password', 'password')
             ->call('deleteUser');
@@ -26,7 +27,8 @@ class DeleteAccountTest extends TestCase
 
     public function testCorrectPasswordMustBeProvidedBeforeAccountCanBeDeleted(): void
     {
-        $this->actingAs($user = User::factory()->create());
+        $user = User::factory()->createOne();
+        $this->actingAs($user);
         Livewire::test(DeleteUserForm::class)
             ->set('password', 'wrong-password')
             ->call('deleteUser')

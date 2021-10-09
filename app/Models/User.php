@@ -28,14 +28,15 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @property Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
+ * @property string|null $profile_photo_path
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $two_factor_secret
  * @property string|null $two_factor_recovery_codes
  * @property-read string $profile_photo_url
- * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
+ * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
- * @property-read Collection<int, PersonalAccessToken> $tokens
+ * @property-read Collection|PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
  * @method static UserFactory factory(...$parameters)
  * @method static Builder|User newModelQuery()
@@ -47,15 +48,12 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @method static Builder|User whereId($value)
  * @method static Builder|User whereName($value)
  * @method static Builder|User wherePassword($value)
+ * @method static Builder|User whereProfilePhotoPath($value)
  * @method static Builder|User whereRememberToken($value)
  * @method static Builder|User whereTwoFactorRecoveryCodes($value)
  * @method static Builder|User whereTwoFactorSecret($value)
  * @method static Builder|User whereUpdatedAt($value)
  * @mixin Eloquent
- * @property string|null $profile_photo_path
- * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
- * @property-read Collection|PersonalAccessToken[] $tokens
- * @method static Builder|User whereProfilePhotoPath($value)
  */
 class User extends Authenticatable
 {

@@ -22,7 +22,7 @@ class AuthenticationTest extends TestCase
 
     public function testUsersCanAuthenticateUsingTheLoginScreen(): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()->createOne();
         $response = $this->post('/login', [
             'email' => $user->email,
             'password' => 'password',
@@ -34,7 +34,7 @@ class AuthenticationTest extends TestCase
 
     public function testUsersCanNotAuthenticateWithInvalidPassword(): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()->createOne();
         $this->post('/login', [
             'email' => $user->email,
             'password' => 'wrong-password',
@@ -51,7 +51,7 @@ class AuthenticationTest extends TestCase
 
     public function testAuthenticatedUsersCanAccessDashboard(): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()->createOne();
         $response = $this->actingAs($user)->get('/');
         $response->assertStatus(Response::HTTP_OK);
     }

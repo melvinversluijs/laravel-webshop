@@ -5,11 +5,17 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 use function now;
 
+/**
+ * @method User createOne($attributes = [])
+ * @method Collection<User> create($attributes = [], ?Model $parent = null)
+ */
 class UserFactory extends Factory
 {
     /**
