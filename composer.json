@@ -21,7 +21,7 @@
         "barryvdh/laravel-ide-helper": "^2.10.0",
         "facade/ignition": "^2.9.0",
         "fakerphp/faker": "^1.14.1",
-        "isaac/php-code-sniffer-standard": "^21.0.0",
+        "isaac/php-code-sniffer-standard": "^23.0.0",
         "mockery/mockery": "^1.4.3",
         "nunomaduro/collision": "^5.4.0",
         "nunomaduro/larastan": "^0.7.5",
