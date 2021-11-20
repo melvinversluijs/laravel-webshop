@@ -56,6 +56,15 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "phpcs": "phpcs",
+        "phpcbf": "phpcbf",
+        "phpstan": "phpstan analyse --memory-limit=2G",
+        "pest": "@php artisan test --parallel",
+        "test": [
+            "@phpcs",
+            "@phpstan",
+            "@pest"
         ]
     },
     "extra": {
