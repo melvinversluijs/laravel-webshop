@@ -9,6 +9,7 @@ services:
     volumes:
       - .:/app:delegated
       - vendor-files:/app/vendor
+      - node-modules:/app/node_modules
     depends_on:
       - db
       - redis
@@ -32,6 +33,21 @@ services:
 
       DEBUGBAR_ENABLED: 1
       DEBUGBAR_THEME: dark
+  node:
+    image: node:16-alpine
+    container_name: webshop-laravel-node
+    command: tail -F /dev/null
+    working_dir: /app
+    volumes:
+      - .:/app:delegated
+      - node-modules:/app/node_modules
+      - /app/app
+      - /app/bootstrap
+      - /app/config
+      - /app/database
+      - /app/routes
+      - /app/tests
+      - /app/vendor
   nginx:
     image: nginx:1.19-alpine
     container_name: webshop-laravel-nginx
@@ -62,3 +78,4 @@ services:
 volumes:
   pgsql-data:
   vendor-files:
+  node-modules:
