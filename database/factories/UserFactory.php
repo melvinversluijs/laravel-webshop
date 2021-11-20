@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
 use function now;
@@ -19,17 +18,19 @@ use function now;
 class UserFactory extends Factory
 {
     /**
-     * The name of the factory's corresponding model.
-     *
      * @var string
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     protected $model = User::class;
 
     /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
+     * @return array{
+     *      name: string,
+     *      email: string,
+     *      email_verified_at: Carbon,
+     *      password: string,
+     *      remember_token: string,
+     * }
      */
     public function definition(): array
     {
