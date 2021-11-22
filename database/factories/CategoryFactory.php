@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Models\Category;
-use App\Models\Slug;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CategoryFactory extends Factory
@@ -20,7 +19,6 @@ class CategoryFactory extends Factory
      * @return array{
      *      code: string,
      *      name: string,
-     *      slug: Slug
      * }
      */
     public function definition(): array
@@ -28,7 +26,6 @@ class CategoryFactory extends Factory
         return [
             'code' => $this->faker->uuid,
             'name' => $this->faker->text(30),
-            'slug' => new Slug(['slug' => $this->faker->slug]),
         ];
     }
 }

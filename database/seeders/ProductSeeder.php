@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use App\Models\Product;
+use App\Models\Slug;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -30,7 +31,7 @@ class ProductSeeder extends Seeder
 
     private function create(string $name): void
     {
-        Product::factory()->create([
+        Product::factory()->has(Slug::factory())->create([
             'name' => $name,
             'sku' => Str::snake($name),
         ]);
