@@ -18,12 +18,6 @@ use function now;
 class UserFactory extends Factory
 {
     /**
-     * @var string
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
-     */
-    protected $model = User::class;
-
-    /**
      * @return array{
      *      name: string,
      *      email: string,

@@ -1,0 +1,167 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Parameter \\#1 \\$value of static method Illuminate\\\\Hashing\\\\HashManager\\:\\:make\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: app/Actions/Fortify/CreateNewUser.php
+
+		-
+			message: "#^Cannot call method forceFill\\(\\) on mixed\\.$#"
+			count: 1
+			path: app/Actions/Fortify/ResetUserPassword.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of static method Illuminate\\\\Hashing\\\\HashManager\\:\\:make\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: app/Actions/Fortify/ResetUserPassword.php
+
+		-
+			message: "#^Cannot access property \\$password on mixed\\.$#"
+			count: 1
+			path: app/Actions/Fortify/UpdateUserPassword.php
+
+		-
+			message: "#^Cannot call method forceFill\\(\\) on mixed\\.$#"
+			count: 1
+			path: app/Actions/Fortify/UpdateUserPassword.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of static method Illuminate\\\\Hashing\\\\HashManager\\:\\:check\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: app/Actions/Fortify/UpdateUserPassword.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of static method Illuminate\\\\Hashing\\\\HashManager\\:\\:make\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: app/Actions/Fortify/UpdateUserPassword.php
+
+		-
+			message: "#^Cannot access property \\$email on mixed\\.$#"
+			count: 1
+			path: app/Actions/Fortify/UpdateUserProfileInformation.php
+
+		-
+			message: "#^Cannot access property \\$id on mixed\\.$#"
+			count: 1
+			path: app/Actions/Fortify/UpdateUserProfileInformation.php
+
+		-
+			message: "#^Cannot call method forceFill\\(\\) on mixed\\.$#"
+			count: 2
+			path: app/Actions/Fortify/UpdateUserProfileInformation.php
+
+		-
+			message: "#^Cannot call method sendEmailVerificationNotification\\(\\) on mixed\\.$#"
+			count: 1
+			path: app/Actions/Fortify/UpdateUserProfileInformation.php
+
+		-
+			message: "#^Cannot call method updateProfilePhoto\\(\\) on mixed\\.$#"
+			count: 1
+			path: app/Actions/Fortify/UpdateUserProfileInformation.php
+
+		-
+			message: "#^Cannot access property \\$tokens on mixed\\.$#"
+			count: 1
+			path: app/Actions/Jetstream/DeleteUser.php
+
+		-
+			message: "#^Cannot call method delete\\(\\) on mixed\\.$#"
+			count: 1
+			path: app/Actions/Jetstream/DeleteUser.php
+
+		-
+			message: "#^Cannot call method deleteProfilePhoto\\(\\) on mixed\\.$#"
+			count: 1
+			path: app/Actions/Jetstream/DeleteUser.php
+
+		-
+			message: "#^PHPDoc type array\\<string\\> of property App\\\\Console\\\\Kernel\\:\\:\\$commands is not the same as PHPDoc type array of overridden property Illuminate\\\\Foundation\\\\Console\\\\Kernel\\:\\:\\$commands\\.$#"
+			count: 1
+			path: app/Console/Kernel.php
+
+		-
+			message: "#^PHPDoc type array\\<string, array\\<string\\>\\> of property App\\\\Http\\\\Kernel\\:\\:\\$middlewareGroups is not the same as PHPDoc type array of overridden property Illuminate\\\\Foundation\\\\Http\\\\Kernel\\:\\:\\$middlewareGroups\\.$#"
+			count: 1
+			path: app/Http/Kernel.php
+
+		-
+			message: "#^PHPDoc type array\\<string, string\\> of property App\\\\Http\\\\Kernel\\:\\:\\$routeMiddleware is not the same as PHPDoc type array of overridden property Illuminate\\\\Foundation\\\\Http\\\\Kernel\\:\\:\\$routeMiddleware\\.$#"
+			count: 1
+			path: app/Http/Kernel.php
+
+		-
+			message: "#^PHPDoc type array\\<string\\> of property App\\\\Http\\\\Kernel\\:\\:\\$middleware is not the same as PHPDoc type array of overridden property Illuminate\\\\Foundation\\\\Http\\\\Kernel\\:\\:\\$middleware\\.$#"
+			count: 1
+			path: app/Http/Kernel.php
+
+		-
+			message: "#^PHPDoc type array\\<string\\> of property App\\\\Http\\\\Middleware\\\\EncryptCookies\\:\\:\\$except is not the same as PHPDoc type array of overridden property Illuminate\\\\Cookie\\\\Middleware\\\\EncryptCookies\\:\\:\\$except\\.$#"
+			count: 1
+			path: app/Http/Middleware/EncryptCookies.php
+
+		-
+			message: "#^PHPDoc type array\\<string\\> of property App\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\\:\\:\\$except is not the same as PHPDoc type array of overridden property Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\\:\\:\\$except\\.$#"
+			count: 1
+			path: app/Http/Middleware/PreventRequestsDuringMaintenance.php
+
+		-
+			message: "#^PHPDoc type array\\<string\\> of property App\\\\Http\\\\Middleware\\\\TrimStrings\\:\\:\\$except is not the same as PHPDoc type array of overridden property Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings\\:\\:\\$except\\.$#"
+			count: 1
+			path: app/Http/Middleware/TrimStrings.php
+
+		-
+			message: "#^PHPDoc type array\\<string\\>\\|string\\|null of property App\\\\Http\\\\Middleware\\\\TrustProxies\\:\\:\\$proxies is not the same as PHPDoc type array\\|string\\|null of overridden property Fideloper\\\\Proxy\\\\TrustProxies\\:\\:\\$proxies\\.$#"
+			count: 1
+			path: app/Http/Middleware/TrustProxies.php
+
+		-
+			message: "#^PHPDoc type array\\<string\\> of property App\\\\Http\\\\Middleware\\\\VerifyCsrfToken\\:\\:\\$except is not the same as PHPDoc type array of overridden property Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\VerifyCsrfToken\\:\\:\\$except\\.$#"
+			count: 1
+			path: app/Http/Middleware/VerifyCsrfToken.php
+
+		-
+			message: "#^PHPDoc type array\\<string, string\\> of property App\\\\Providers\\\\AuthServiceProvider\\:\\:\\$policies is not the same as PHPDoc type array of overridden property Illuminate\\\\Foundation\\\\Support\\\\Providers\\\\AuthServiceProvider\\:\\:\\$policies\\.$#"
+			count: 1
+			path: app/Providers/AuthServiceProvider.php
+
+		-
+			message: "#^PHPDoc type array\\<string, array\\<string\\>\\> of property App\\\\Providers\\\\EventServiceProvider\\:\\:\\$listen is not the same as PHPDoc type array of overridden property Illuminate\\\\Foundation\\\\Support\\\\Providers\\\\EventServiceProvider\\:\\:\\$listen\\.$#"
+			count: 1
+			path: app/Providers/EventServiceProvider.php
+
+		-
+			message: "#^Parameter \\#1 \\$key of method Illuminate\\\\Cache\\\\RateLimiting\\\\Limit\\:\\:by\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: app/Providers/FortifyServiceProvider.php
+
+		-
+			message: "#^Cannot access property \\$id on mixed\\.$#"
+			count: 1
+			path: app/Providers/RouteServiceProvider.php
+
+		-
+			message: "#^Parameter \\#1 \\$title of static method Illuminate\\\\Support\\\\Str\\:\\:slug\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: config/cache.php
+
+		-
+			message: "#^Parameter \\#1 \\$title of static method Illuminate\\\\Support\\\\Str\\:\\:slug\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: config/database.php
+
+		-
+			message: "#^Parameter \\#1 \\$url of function parse_url expects string, mixed given\\.$#"
+			count: 1
+			path: config/sanctum.php
+
+		-
+			message: "#^Parameter \\#2 \\$string of function explode expects string, mixed given\\.$#"
+			count: 1
+			path: config/sanctum.php
+
+		-
+			message: "#^Parameter \\#1 \\$title of static method Illuminate\\\\Support\\\\Str\\:\\:slug\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: config/session.php
+

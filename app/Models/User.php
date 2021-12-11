@@ -22,7 +22,7 @@ use Laravel\Sanctum\PersonalAccessToken;
 /**
  * App\Models\User
  *
- * @property int $id
+ * @property int|null $id
  * @property string $name
  * @property string $email
  * @property Carbon|null $email_verified_at
@@ -81,6 +81,7 @@ class User extends Authenticatable
      * @var string[]
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
+    // @phpstan-ignore-next-line -- Parent does not have an array type.
     protected $hidden = [
         'password',
         'remember_token',
@@ -94,6 +95,7 @@ class User extends Authenticatable
      * @var string[]
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
+    // @phpstan-ignore-next-line -- Parent does not have an array type.
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
@@ -104,6 +106,7 @@ class User extends Authenticatable
      * @var string[]
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
+    // @phpstan-ignore-next-line -- Parent does not have an array type.
     protected $appends = [
         'profile_photo_url',
     ];
