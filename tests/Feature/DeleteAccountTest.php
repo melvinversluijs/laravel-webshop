@@ -8,32 +8,32 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Jetstream\Http\Livewire\DeleteUserForm;
 use Livewire\Livewire;
-use Tests\TestCase;
 
-class DeleteAccountTest extends TestCase
-{
-    use RefreshDatabase;
+use function it;
+use function Pest\Laravel\actingAs;
+use function PHPUnit\Framework\assertNotNull;
+use function PHPUnit\Framework\assertNull;
+use function uses;
 
-    public function testUserAccountsCanBeDeleted(): void
-    {
-        $user = User::factory()->createOne();
-        $this->actingAs($user);
-        Livewire::test(DeleteUserForm::class)
-            ->set('password', 'password')
-            ->call('deleteUser');
+uses(RefreshDatabase::class);
 
-        self::assertNull($user->fresh());
-    }
+it('can delete user accounts', function () {
+    $user = User::factory()->createOne();
+    actingAs($user);
+    Livewire::test(DeleteUserForm::class)
+        ->set('password', 'password')
+        ->call('deleteUser');
 
-    public function testCorrectPasswordMustBeProvidedBeforeAccountCanBeDeleted(): void
-    {
-        $user = User::factory()->createOne();
-        $this->actingAs($user);
-        Livewire::test(DeleteUserForm::class)
-            ->set('password', 'wrong-password')
-            ->call('deleteUser')
-            ->assertHasErrors(['password']);
+    assertNull($user->fresh());
+});
 
-        self::assertNotNull($user->fresh());
-    }
-}
+it('needs a correct password before deleting an account', function () {
+    $user = User::factory()->createOne();
+    actingAs($user);
+    Livewire::test(DeleteUserForm::class)
+        ->set('password', 'wrong-password')
+        ->call('deleteUser')
+        ->assertHasErrors(['password']);
+
+    assertNotNull($user->fresh());
+});

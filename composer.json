@@ -57,7 +57,7 @@
         ],
         "phpcs": "phpcs",
         "phpcbf": "phpcbf",
-        "phpstan": "phpstan analyse --memory-limit=2G",
+        "phpstan": "phpstan analyse --memory-limit=2G -c phpstan.neon",
         "pest": "@php artisan test --parallel",
         "test": [
             "@phpcs",

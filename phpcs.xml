@@ -26,8 +26,14 @@
         <exclude-pattern>database/migrations</exclude-pattern>
     </rule>
 
-    <!-- You can use '$this' in route files. -->
+    <!-- You can use '$this' in route and test files. -->
     <rule ref="PHPCompatibility.FunctionDeclarations.NewClosure.ThisFoundOutsideClass">
         <exclude-pattern>routes</exclude-pattern>
+        <exclude-pattern>tests</exclude-pattern>
+    </rule>
+
+    <!-- Can't have static closures in Pest tests. -->
+    <rule ref="SlevomatCodingStandard.Functions.StaticClosure.ClosureNotStatic">
+        <exclude-pattern>tests</exclude-pattern>
     </rule>
 </ruleset>

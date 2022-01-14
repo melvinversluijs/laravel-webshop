@@ -8,51 +8,49 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Symfony\Component\HttpFoundation\Response;
-use Tests\TestCase;
 
-class AuthenticationTest extends TestCase
-{
-    use RefreshDatabase;
+use function it;
+use function Pest\Laravel\actingAs;
+use function Pest\Laravel\assertAuthenticated;
+use function Pest\Laravel\assertGuest;
+use function Pest\Laravel\get;
+use function Pest\Laravel\post;
+use function uses;
 
-    public function testLoginScreenCanBeRendered(): void
-    {
-        $response = $this->get('/login');
-        $response->assertStatus(200);
-    }
+uses(RefreshDatabase::class);
 
-    public function testUsersCanAuthenticateUsingTheLoginScreen(): void
-    {
-        $user = User::factory()->createOne();
-        $response = $this->post('/login', [
-            'email' => $user->email,
-            'password' => 'password',
-        ]);
+it('can render login page', function () {
+    get('/login')->assertStatus(Response::HTTP_OK);
+});
 
-        $this->assertAuthenticated();
-        $response->assertRedirect(RouteServiceProvider::HOME);
-    }
+it('lets users authenticate using the login page', function () {
+    $user = User::factory()->createOne();
+    $response = post('/login', [
+        'email' => $user->email,
+        'password' => 'password',
+    ]);
 
-    public function testUsersCanNotAuthenticateWithInvalidPassword(): void
-    {
-        $user = User::factory()->createOne();
-        $this->post('/login', [
-            'email' => $user->email,
-            'password' => 'wrong-password',
-        ]);
+    assertAuthenticated();
+    $response->assertRedirect(RouteServiceProvider::HOME);
+});
 
-        $this->assertGuest();
-    }
+it('does not authenticate users with an invalid password', function () {
+    $user = User::factory()->createOne();
+    post('/login', [
+        'email' => $user->email,
+        'password' => 'wrong-password',
+    ]);
 
-    public function testGuestsCanNotAccessDashboard(): void
-    {
-        $response = $this->get('/');
-        $response->assertStatus(Response::HTTP_FOUND);
-    }
+    assertGuest();
+});
 
-    public function testAuthenticatedUsersCanAccessDashboard(): void
-    {
-        $user = User::factory()->createOne();
-        $response = $this->actingAs($user)->get('/');
-        $response->assertStatus(Response::HTTP_OK);
-    }
-}
+it('does not let guests access the dashboard', function () {
+    get('/')
+        ->assertStatus(Response::HTTP_FOUND)
+        ->assertRedirect('/login');
+});
+
+it('lets authenticated users access the dashboard', function () {
+    actingAs(User::factory()->createOne());
+    get('/')->assertStatus(Response::HTTP_OK);
+});

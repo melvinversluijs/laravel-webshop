@@ -5,45 +5,43 @@ declare(strict_types=1);
 namespace Tests\Feature;
 
 use App\Models\User;
-use Exception;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Http\Livewire\ApiTokenManager;
 use Livewire\Livewire;
-use Tests\TestCase;
+use LogicException;
 
-class ApiTokenPermissionsTest extends TestCase
-{
-    use RefreshDatabase;
+use function it;
+use function Pest\Laravel\actingAs;
+use function PHPUnit\Framework\assertFalse;
+use function PHPUnit\Framework\assertTrue;
+use function uses;
 
-    /**
-     * @throws Exception
-     */
-    public function testApiTokenPermissionsCanBeUpdated(): void
-    {
-        $user = User::factory()->createOne();
-        $this->actingAs($user);
-        $token = $user->tokens()->create([
-            'name' => 'Test Token',
-            'token' => Str::random(40),
-            'abilities' => ['create', 'read'],
-        ]);
+uses(RefreshDatabase::class);
 
-        Livewire::test(ApiTokenManager::class)
-                    ->set(['managingPermissionsFor' => $token])
-                    ->set(['updateApiTokenForm' => [
-                        'permissions' => ['delete', 'missing-permission'],
-                    ],
-                    ])
-                    ->call('updateApiToken');
+it('tests API token permissions can be updated.', function () {
+    $user = User::factory()->createOne();
+    actingAs($user);
+    $token = $user->tokens()->create([
+        'name' => 'Test Token',
+        'token' => Str::random(40),
+        'abilities' => ['create', 'read'],
+    ]);
 
-        $user = $user->fresh();
-        if ($user === null) {
-            throw new Exception('Could not properly refresh user.');
-        }
+    Livewire::test(ApiTokenManager::class)
+        ->set(['managingPermissionsFor' => $token])
+        ->set(['updateApiTokenForm' => [
+            'permissions' => ['delete', 'missing-permission'],
+        ],
+        ])
+        ->call('updateApiToken');
 
-        self::assertTrue($user->tokens->first()?->can('delete'));
-        self::assertFalse($user->tokens->first()?->can('read'));
-        self::assertFalse($user->tokens->first()?->can('missing-permission'));
+    $user = $user->fresh();
+    if ($user === null) {
+        throw new LogicException('Could not properly refresh user.');
     }
-}
+
+    assertTrue($user->tokens->first()?->can('delete'));
+    assertFalse($user->tokens->first()?->can('read'));
+    assertFalse($user->tokens->first()?->can('missing-permission'));
+});

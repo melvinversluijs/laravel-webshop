@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use function it;
+use function PHPUnit\Framework\assertTrue;
 
-class ExampleTest extends TestCase
-{
-    public function testExample(): void
-    {
-        self::assertTrue(true);
-    }
-}
+it('assert true is true', function () {
+    assertTrue(true);
+});
