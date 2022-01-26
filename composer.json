@@ -5,7 +5,7 @@
     "keywords": ["framework", "laravel", "webshop"],
     "license": "MIT",
     "require": {
-        "php": "~8.0.0",
+        "php": "~8.1.0",
         "doctrine/dbal": "^3.2.0",
         "fideloper/proxy": "^4.4.1",
         "fruitcake/laravel-cors": "^2.0.4",
