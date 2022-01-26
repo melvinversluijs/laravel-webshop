@@ -6,7 +6,7 @@ RUN apk add \
         postgresql-dev
 
 ## Install composer.
-COPY --from=composer:2.0 /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer:2.2 /usr/bin/composer /usr/local/bin/composer
 
 ## Install Redis.
 ENV PHPREDIS_VERSION 5.3.4
