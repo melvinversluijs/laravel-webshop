@@ -12,8 +12,7 @@ use Illuminate\Support\Str;
 use function now;
 
 /**
- * @method User createOne($attributes = [])
- * @method Collection<User> create($attributes = [], ?Model $parent = null)
+ * @extends Factory<User>
  */
 class UserFactory extends Factory
 {
@@ -40,14 +39,12 @@ class UserFactory extends Factory
     /**
      * Indicate that the model's email address should be unverified.
      *
-     * @return Factory
+     * @return Factory<User>
      */
     public function unverified(): Factory
     {
-        return $this->state(static function (array $attributes): array {
-            return [
-                'email_verified_at' => null,
-            ];
-        });
+        return $this->state(static fn (): array => [
+            'email_verified_at' => null,
+        ]);
     }
 }

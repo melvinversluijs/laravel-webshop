@@ -73,11 +73,17 @@ class Product extends Model
         return $this->updated_at?->format('d-m-Y H:i:s');
     }
 
+    /**
+     * @return BelongsToMany<Category>
+     */
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class);
     }
 
+    /**
+     * @return MorphOne<Slug>
+     */
     public function slug(): MorphOne
     {
         return $this->morphOne(Slug::class, 'slugable');

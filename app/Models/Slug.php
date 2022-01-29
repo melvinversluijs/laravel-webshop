@@ -17,10 +17,10 @@ use Illuminate\Support\Carbon;
  * @property int $id
  * @property string $slug
  * @property int $slugable_id
- * @property string $slugable_type
+ * @property class-string $slugable_type
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read Model|Eloquent $slugable
+ * @property-read Category|Product $slugable
  * @method static Builder|Slug newModelQuery()
  * @method static Builder|Slug newQuery()
  * @method static Builder|Slug query()
@@ -44,6 +44,9 @@ class Slug extends Model
         'slug',
     ];
 
+    /**
+     * @return MorphTo<Model, Slug>
+     */
     public function slugable(): MorphTo
     {
         return $this->morphTo();

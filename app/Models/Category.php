@@ -61,11 +61,17 @@ class Category extends Model
         return $this->updated_at?->format('d-m-Y H:i:s');
     }
 
+    /**
+     * @return BelongsToMany<Product>
+     */
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class);
     }
 
+    /**
+     * @return MorphOne<Slug>
+     */
     public function slug(): MorphOne
     {
         return $this->morphOne(Slug::class, 'slugable');
